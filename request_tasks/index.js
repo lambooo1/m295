@@ -1,9 +1,12 @@
 import express, { request } from "express";
+import cors from "cors"; 
 
 const app = express(); 
-const port = 3001
+const port = 3002
+const names = ['Hans', 'Bart', 'Lisa']
 
 app.use(express.urlencoded());
+app.use(cors()); 
 
 /*
 app.get("/", (req, res) => {
@@ -55,10 +58,12 @@ app.get('/', function(request, response, next){
 });
 
 app.post('/', function(request, response, next){
-
 	response.send(request.body);
-
 });
+
+app.delete('/name', (res, req) => {
+    console.log(req.body)
+})
 
 app.listen(port, () => {
     console.log("Server ist gestartet.");

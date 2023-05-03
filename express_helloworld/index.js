@@ -6,6 +6,8 @@ const port = 3000
 const names = ["Abir", "Arham", "Sadi", "Labi", "Mahdi"]
 const image = "/workspaces/m295/express_helloworld/image-data.jpg"
 const htmlfile = "/workspaces/m295/home.html" 
+const xmlfile = "/workspaces/m295/express_helloworld/books.xml"
+const jsonfile = "/workspaces/m295/express_helloworld/me.json"
 
 
 app.get("/", (req, res) => {
@@ -38,7 +40,20 @@ app.get("/teapot", (req, res) => {
 
 
 app.get("/user-agent", (req, res) => {
-    req.d
+    res.send(req.headers["user-agent"])
+})
+
+app.get("/secret", (req, res) => {
+    res.sendStatus(403) 
+})
+
+app.get("/xml", (req, res) => {
+    res.sendFile(xmlfile) 
+})
+
+app.get("/me", (req, res) => {
+
+    res.sendFile(jsonfile) 
 })
 
 app.listen(port, () => {

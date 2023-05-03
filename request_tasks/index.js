@@ -34,15 +34,15 @@ app.post('/names-post', (req, res) => {
 });
 
 app.delete('/namesdel', multer().none(), (req, res) => {
-    console.log(req.body.namedelete);
+    console.log(req.body.name); 
     names = names.filter((n) => n !== req.body.name);
     console.log(names);
     res.sendStatus(204);
   });
 
 app.get('/secret2', (req, res) => {
-    const info = req.get(Headers)
-	if (info == "BasicaGFja2VyOjEyMzQ="){
+    const auth = req.headers.authorization;
+	if (auth == "Basic dW5kZWZpbmVkOnVuZGVmaW5lZA=="){
         res.sendStatus(201);
     }else {
         res.sendStatus(401); 

@@ -53,9 +53,8 @@ app.get('/chuck', async(req, res) => {
     const options = {method: 'GET'};
     await fetch('https://api.chucknorris.io/jokes/random', options)
     .then(response => response.json())
-    .then(response => console.log(response.value))
+    .then(response => res.send(response.value.replace("Chuck Norris", req.query.name)))
     .catch(err => console.error(err));
-    
 });
 
 app.listen(port, () => {

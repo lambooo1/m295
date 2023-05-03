@@ -1,4 +1,4 @@
-import express, { request } from "express";
+import express, { request, response } from "express";
 import cors from "cors"; 
 import multer from "multer"; 
 
@@ -40,13 +40,22 @@ app.delete('/namesdel', multer().none(), (req, res) => {
     res.sendStatus(204);
   });
 
-app.get('/secret2', (request, response) => {
+app.get('/secret2', (req, res) => {
     const info = req.get(Headers)
 	if (info == "BasicaGFja2VyOjEyMzQ="){
         res.sendStatus(201);
     }else {
         res.sendStatus(401); 
     }
+});
+
+app.get('/chuck', async(req, res) => {
+    const options = {method: 'GET'};
+    await fetch('https://api.chucknorris.io/jokes/random', options)
+    .then(response => response.json())
+    .then(response => console.log(response.value))
+    .catch(err => console.error(err));
+    
 });
 
 app.listen(port, () => {

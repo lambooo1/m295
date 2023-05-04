@@ -1,0 +1,84 @@
+let books = [
+    {
+      "isbn": "10",
+      "title": "Harry Potter",
+      "year": 1949,
+      "author": "George Orwell"
+    },
+    {
+      "isbn": "20",
+      "title": "To Kill a Mockingbird",
+      "year": 1960,
+      "author": "Harper Lee"
+    },
+    {
+      "isbn": "30",
+      "title": "The Catcher in the Rye",
+      "year": 1951,
+      "author": "J.D. Salinger"
+    },
+    {
+      "isbn": "40",
+      "title": "Moby-Dick",
+      "year": 1851,
+      "author": "Herman Melville"
+    },
+    {
+      "isbn": "50",
+      "title": "One Hundred Years of Solitude",
+      "year": 1967,
+      "author": "Gabriel Garcia Marquez"
+    },
+    {
+      "isbn": "60",
+      "title": "The Great Gatsby",
+      "year": 1925,
+      "author": "F. Scott Fitzgerald"
+    },
+    {
+      "isbn": "70",
+      "title": "The Alchemist",
+      "year": 1988,
+      "author": "Paulo Coelho"
+    },
+    {
+      "isbn": "80",
+      "title": "The Hobbit",
+      "year": 1937,
+      "author": "J.R.R. Tolkien"
+    },
+    {
+      "isbn": "90",
+      "title": "The Giver",
+      "year": 1993,
+      "author": "Lois Lowry"
+    },
+    {
+        "isbn": "100",
+        "title": "Peter",
+        "year": 1995,
+        "author": "Nikola Antic"
+      }
+] 
+
+
+export function findAll() {
+    return books  
+}
+
+export function findByISBN(isbn) {
+    return books.find((book) => book.isbn === isbn)
+}
+
+export function insert(book) {
+    books = [...books, book]; 
+}
+
+export function replace(book) {
+    books = books.map((b) => b.isbn == book.isbn ? book : b);  
+    
+}
+
+export function remove(isbn) {
+    books = books.filter((b) => b.isbn !== isbn); 
+}

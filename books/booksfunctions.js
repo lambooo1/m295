@@ -135,7 +135,6 @@ export function insert(book) {
 
 export function replace(book) {
     books = books.map((b) => b.isbn == book.isbn ? book : b);  
-    
 }
 
 export function remove(isbn) {
@@ -149,3 +148,11 @@ export function findAllLends() {
 export function findByIDLends(id) {
   return lends.find((lend) => lend.id === id)
 } 
+
+export function insertlends(lend) {
+  lends = [...lends, lend]; 
+}
+
+export function replaceLends(lend) {
+  lends = lends.map((l) => l.id == lend.id ? lend : l);  
+}

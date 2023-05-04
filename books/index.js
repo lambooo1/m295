@@ -3,12 +3,11 @@ import fs from "fs";
 //import * as books from "/workspaces/m295/books/books.json" assert {type : 'json'}
 import { type } from "os";
 //import { findAll } from "/workspaces/m295/books/books.js"; 
-import { findAll, remove, replace, insert, findByISBN, findAllLends, findByIDLends } from "./booksfunctions.js"
-
+import { findAll, remove, replace, insert, findByISBN, findAllLends, findByIDLends, insertlends, replaceLends } from "./booksfunctions.js"
 
 
 const app = express(); 
-const port = 3000
+const port = 3055
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true })); 
@@ -31,11 +30,21 @@ app.get("/books", (req, res) => {
 */
 
 app.get("/books", (req, res) => {
-    res.send(findAll());
+    try{
+        res.send(findAll());
+    }
+    catch{
+        res.sendStatus(500).send("Failed to get books.") 
+    }
 })
 
 app.get("/books/:isbn", (req, res) => {
-    res.send(findByISBN(req.params.isbn))
+    try{
+        res.send(findByISBN(req.params.isbn))
+    }
+    catch{
+        res.sendStatus(404).send("Failed to get book.") 
+    }
 })
 
 app.delete("/books/:isbn", (req, res) => {
@@ -67,13 +76,50 @@ app.put("/books/:isbn", (req, res) => {
 })
 
 app.get("/lends", (req, res) => {
-    res.send(findAllLends())
+
+    
+    try{
+        res.send(findAllLends());
+    }
+    catch{
+        res.sendStatus(500).send("Failed to get lends.") 
+    }
 })
 
 app.get("/lends/:id", (req, res) => {
-    res.send(findByIDLends(req.params.id))
+    try{
+        res.send(findByIDLends(req.params.id))
+    }
+    catch{
+        res.sendStatus(404).send("Failed to get lend.") 
+    }
 })
 
+app.post("/lends", (req, res) => {
+    const newLend = {
+        "id": "9",
+        "customer_id": "99",
+        "isbn": "9999",
+        "borrowed_at": "2022-05-04T14:20:00.000Z",
+        "returned_at": "2022-05-06T16:10:00.000Z"
+      }
+    insertlends(newLend)
+    res.send(findAllLends())
+})
+
+app.patch("/lends/:id", (req, res) => {
+    const patchid = req.params.id
+    const newLend = {
+        "id": patchid,
+        "customer_id": req.query.customer_id,
+        "isbn": "9999",
+        "borrowed_at": "2022-05-04T14:20:00.000Z",
+        "returned_at": "2022-05-06T16:10:00.000Z"
+    }
+    replaceLends(newLend)
+    res.send(findByIDLends(patchid))
+    //http://localhost:3055/lends/5?customer_id=333 
+})
 
 app.listen(port, () => {
     console.log("Server ist gestartet.");

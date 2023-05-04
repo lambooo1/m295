@@ -3,7 +3,7 @@ import fs from "fs";
 //import * as books from "/workspaces/m295/books/books.json" assert {type : 'json'}
 import { type } from "os";
 //import { findAll } from "/workspaces/m295/books/books.js"; 
-import { findAll, remove, replace, insert, findByISBN } from "./booksfunctions.js"
+import { findAll, remove, replace, insert, findByISBN, findAllLends, findByIDLends } from "./booksfunctions.js"
 
 
 
@@ -65,6 +65,15 @@ app.put("/books/:isbn", (req, res) => {
     replace(putBook)
     res.send(findAll()) 
 })
+
+app.get("/lends", (req, res) => {
+    res.send(findAllLends())
+})
+
+app.get("/lends/:id", (req, res) => {
+    res.send(findByIDLends(req.params.id))
+})
+
 
 app.listen(port, () => {
     console.log("Server ist gestartet.");

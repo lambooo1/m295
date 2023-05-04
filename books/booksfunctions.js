@@ -61,6 +61,65 @@ let books = [
       }
 ] 
 
+let lends = [
+  {
+    "id": "1",
+    "customer_id": "11",
+    "isbn": "9780141187761",
+    "borrowed_at": "2022-04-12T10:30:00.000Z",
+    "returned_at": "2022-04-19T11:45:00.000Z"
+  },
+  {
+    "id": "2",
+    "customer_id": "22",
+    "isbn": "2222",
+    "borrowed_at": "2022-04-20T09:15:00.000Z",
+    "returned_at": "2022-04-23T13:20:00.000Z"
+  },
+  {
+    "id": "3",
+    "customer_id": "33",
+    "isbn": "3333",
+    "borrowed_at": "2022-04-25T14:00:00.000Z",
+    "returned_at": ""
+  },
+  {
+    "id": "4",
+    "customer_id": "44",
+    "isbn": "4444",
+    "borrowed_at": "2022-04-28T16:45:00.000Z",
+    "returned_at": "2022-05-01T11:10:00.000Z"
+  },
+  {
+    "id": "5",
+    "customer_id": "55",
+    "isbn": "5555",
+    "borrowed_at": "2022-05-02T08:20:00.000Z",
+    "returned_at": ""
+  },
+  {
+    "id": "6",
+    "customer_id": "66",
+    "isbn": "6666",
+    "borrowed_at": "2022-05-03T12:30:00.000Z",
+    "returned_at": ""
+  },
+  {
+    "id": "7",
+    "customer_id": "77",
+    "isbn": "7777",
+    "borrowed_at": "2022-05-04T09:45:00.000Z",
+    "returned_at": ""
+  },
+  {
+    "id": "8",
+    "customer_id": "88",
+    "isbn": "8888",
+    "borrowed_at": "2022-05-04T14:20:00.000Z",
+    "returned_at": "2022-05-06T16:10:00.000Z"
+  }
+]
+
 
 export function findAll() {
     return books  
@@ -82,3 +141,11 @@ export function replace(book) {
 export function remove(isbn) {
     books = books.filter((b) => b.isbn !== isbn); 
 }
+
+export function findAllLends() {
+  return lends  
+} 
+
+export function findByIDLends(id) {
+  return lends.find((lend) => lend.id === id)
+} 

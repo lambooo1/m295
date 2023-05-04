@@ -30,16 +30,20 @@ app.get("/books", (req, res) => {
 })
 */
 
-app.get("/allBooks", (req, res) => {
+app.get("/books", (req, res) => {
     res.send(findAll());
 })
 
-app.delete("/delete/:isbn", (req, res) => {
+app.get("/books/:isbn", (req, res) => {
+    res.send(findByISBN(req.params.isbn))
+})
+
+app.delete("/books/:isbn", (req, res) => {
     remove(req.params.isbn)
     res.sendStatus(204);
 })
 
-app.post("/postBook", (req, res) => {
+app.post("/books", (req, res) => {
     const newBook = {
         "isbn": "500",
         "title": "Nikgola",
@@ -48,6 +52,17 @@ app.post("/postBook", (req, res) => {
     }
     insert(newBook)
     res.send(findAll())
+})
+
+app.put("/books/:isbn", (req, res) => {
+    const putBook = {
+        "isbn": "50",
+        "title": "meroo",
+        "year": 187,
+        "author": "mero Antic"
+    }
+    replace(putBook)
+    res.send(findAll()) 
 })
 
 app.listen(port, () => {

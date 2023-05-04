@@ -122,6 +122,8 @@ app.patch("/lends/:id", (req, res) => {
     //http://localhost:3055/lends/5?customer_id=333 
 })
 
+
+
 app.listen(port, () => {
     console.log("Server ist gestartet.");
 });

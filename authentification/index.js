@@ -51,6 +51,10 @@ app.delete("/name", (req, res) => {
     }
 })
 
+app.get("/*", (req, res) => {
+    res.status(404).json({error: "Seite wurde nicht gefunden."})
+})
+
 /*
 app.post("/login", (req, res) => {
     const {email: password} = req.body

@@ -81,7 +81,7 @@ let lends = [
     "customer_id": "33",
     "isbn": "3333",
     "borrowed_at": "2022-04-25T14:00:00.000Z",
-    "returned_at": ""
+    "returned_at": null
   },
   {
     "id": "4",
@@ -155,4 +155,16 @@ export function insertlends(lend) {
 
 export function replaceLends(lend) {
   lends = lends.map((l) => l.id == lend.id ? lend : l);  
+}
+
+export function checkStatus(){
+  const statusCode422 = false
+  for (let lend in lends){
+    if (lend === undefined){
+      statusCode422 = true;
+      break;
+    }else {
+      continue 
+    }
+  }
 }

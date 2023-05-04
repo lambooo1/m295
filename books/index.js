@@ -3,7 +3,8 @@ import fs from "fs";
 //import * as books from "/workspaces/m295/books/books.json" assert {type : 'json'}
 import { type } from "os";
 //import { findAll } from "/workspaces/m295/books/books.js"; 
-import { findAll, remove, replace, insert, findByISBN, findAllLends, findByIDLends, insertlends, replaceLends } from "./booksfunctions.js"
+import { findAll, remove, replace, insert, findByISBN, findAllLends, findByIDLends, 
+    insertlends, replaceLends, checkStatus } from "./booksfunctions.js"
 
 
 const app = express(); 

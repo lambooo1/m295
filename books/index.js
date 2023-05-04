@@ -55,8 +55,9 @@ app.post("/books", (req, res) => {
 })
 
 app.put("/books/:isbn", (req, res) => {
+    const putisbn = req.params.isbn
     const putBook = {
-        "isbn": "50",
+        "isbn": putisbn,
         "title": "meroo",
         "year": 187,
         "author": "mero Antic"
